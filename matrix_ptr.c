@@ -24,10 +24,11 @@ void test_1();
 void test_2();
 void test_3();
 void test_4();
+void test_5();
 
 int main(void) {
 	
-	test_4();
+	test_5();
 	
 	return 0;
 }
@@ -83,6 +84,22 @@ void test_4() {
 	print_matrix(col, row, result);
 	
 	free(m);
+	free(result);
+}
+
+void test_5() {
+	int row = 2, col = 2;
+	
+	matrix m1 = new_matrix(row, col, USER);
+	matrix m2 = new_matrix(row, col, USER);
+	matrix result = product(row, col, m1, row, col, m2);
+	
+	print_matrix(row, col, m1);
+	print_matrix(row, col, m2);
+	print_matrix(row, col, result);
+	
+	free(m1);
+	free(m2);
 	free(result);
 }
 /* 
@@ -157,6 +174,25 @@ matrix transpose(int row, int col, matrix m) {
 		for (j = 0; j < col; j++) {
 			float element = get_element(i, j, col, m);
 			set_element(j, i, row, tmp, element);
+		}
+	}
+	return tmp;
+}
+
+matrix product(int row1, int col1, matrix m1, int row2, int col2, matrix m2) {
+	if (col1 != row2) {
+		printf("Matrix product not possible\n");
+		return NULL;
+	}
+	matrix tmp = new_matrix(row1, col2, ZERO);
+	int i, j, k;
+	for (i = 0; i < row1; i++) {
+		for (j = 0; j < col2; j++) {
+			float sum = 0;
+			for (k = 0; k < col1; k++) {
+				sum += get_element(i, k, col1, m1) * get_element(k, j, col2, m2);
+			}
+			set_element(i, j, col2, tmp, sum);
 		}
 	}
 	return tmp;
