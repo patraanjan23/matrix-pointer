@@ -1,10 +1,3 @@
-/*
- * Roll & No:
- *
- * Registration No:
- *
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -30,10 +23,11 @@ matrix product(int, int, matrix, int, int, matrix);
 void test_1();
 void test_2();
 void test_3();
+void test_4();
 
 int main(void) {
 	
-	test_3();
+	test_4();
 	
 	return 0;
 }
@@ -63,10 +57,14 @@ void test_2() {
 
 void test_3() {
 	int rows = 3, cols = 3;
+	float k = 10.0;
 	
 	printf("Enter matrix data:\n");
 	matrix m = new_matrix(rows, cols, USER);
-	matrix result = scalar_product(rows, cols, m, 10.0);
+	
+	printf("Enter a scalar: ");
+	scanf("%f", &k);
+	matrix result = scalar_product(rows, cols, m, k);
 	
 	print_matrix(rows, cols, m);
 	print_matrix(rows, cols, result);
@@ -75,6 +73,18 @@ void test_3() {
 	free(result);
 }
 
+void test_4() {
+	int row = 2, col = 3;
+	
+	matrix m = new_matrix(row, col, USER);
+	matrix result = transpose(row, col, m);
+	
+	print_matrix(row, col, m);
+	print_matrix(col, row, result);
+	
+	free(m);
+	free(result);
+}
 /* 
  * mode = 1 => user filled
  * mode = 0 => zero filled
@@ -134,6 +144,19 @@ matrix scalar_product(int row, int col, matrix m, float k) {
 		for (j = 0; j < col; j++) {
 			float k_product = k * get_element(i, j, col, m);
 			set_element(i, j, col, tmp, k_product);
+		}
+	}
+	return tmp;
+}
+
+/* returns transposed matrix so make sure to print the result using transposed dimensions */
+matrix transpose(int row, int col, matrix m) {
+	matrix tmp = new_matrix(col, row, ZERO); /* create empty matrix of transpose dim */
+	int i, j;
+	for (i = 0; i < row; i++) {
+		for (j = 0; j < col; j++) {
+			float element = get_element(i, j, col, m);
+			set_element(j, i, row, tmp, element);
 		}
 	}
 	return tmp;
