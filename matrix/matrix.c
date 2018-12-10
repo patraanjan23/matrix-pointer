@@ -166,8 +166,8 @@ matrix scalar_product(int row, int col, matrix m, float k) {
 /* returns transposed matrix so make sure to print the result using transposed
  * dimensions */
 matrix transpose(int row, int col, matrix m) {
-  matrix tmp =
-      new_matrix(col, row, ZERO); /* create empty matrix of transpose dim */
+  /* create empty matrix of transpose dim */
+  matrix tmp = new_matrix(col, row, ZERO);
   int i, j;
   for (i = 0; i < row; i++) {
     for (j = 0; j < col; j++) {
@@ -223,9 +223,12 @@ void copy(int row, int col, matrix m1, matrix m2) {
  * returns the power as a new matrix
  */
 
-matrix power(int row, matrix m, int power) {
+matrix power(int row, int col, matrix m, int power) {
+  if (row != col) {
+    printf("\n%s\n", "operation not possible : not a square matrix");
+    return NULL;
+  }
   matrix tmp = new_matrix(row, row, UNIT);
-
   int p;
   for (p = 0; p < power; p++) {
     matrix pow_m = product(row, row, tmp, row, row, m);

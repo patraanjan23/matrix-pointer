@@ -22,6 +22,6 @@ matrix scalar_product(int, int, matrix, float);
 matrix transpose(int, int, matrix);
 matrix product(int, int, matrix, int, int, matrix);
 void copy(int, int, matrix, matrix);
-matrix power(int, matrix, int);
+matrix power(int, int, matrix, int);
 
 #endif
