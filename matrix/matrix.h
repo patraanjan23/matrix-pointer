@@ -1,7 +1,7 @@
 #ifndef _MATRIX_H
 #define _MATRIX_H
 
-#define DATA 2
+#define UNIT 2
 #define USER 1
 #define ZERO 0
 #define SIG_DIG 6
@@ -19,5 +19,7 @@ matrix sum(int, int, matrix, matrix);
 matrix scalar_product(int, int, matrix, float);
 matrix transpose(int, int, matrix);
 matrix product(int, int, matrix, int, int, matrix);
+void copy(int, int, matrix, matrix);
+matrix power(int, matrix, int);
 
 #endif

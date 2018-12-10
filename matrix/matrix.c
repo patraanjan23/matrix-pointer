@@ -20,6 +20,13 @@ matrix new_matrix(int row, int col, int mode) {
 				printf("[%d][%d] = ", i + 1, j + 1);
 				scanf("%f", &value);
 			}
+			if (mode == UNIT) {
+				if (j == i) {
+					value = 1;
+				} else {
+					value = 0;
+				}
+			}
 			set_element(i, j, col, tmp, value);
 		}
 		if (mode == USER) {
@@ -162,5 +169,48 @@ matrix product(int row1, int col1, matrix m1, int row2, int col2, matrix m2) {
 			set_element(i, j, col2, tmp, sum);
 		}
 	}
+	return tmp;
+}
+
+/*
+ * copy matrix a to matrix b
+ * 
+ */
+
+void copy(int row, int col, matrix m1, matrix m2) {
+	int i, j;
+	for (i = 0; i < row; i++) {
+		for (j = 0; j < col; j++) {
+			float val = get_element(i, j, col, m1);
+			set_element(i, j, col, m2, val);
+		}
+	}
+}
+
+/*
+ * power of a matrix
+ * 
+ * returns the power as a new matrix
+ */
+
+matrix power(int row, matrix m, int power) {
+	matrix tmp = new_matrix(row, row, UNIT);
+	/* print_matrix(row, row, m); */
+	/* print_matrix(row, row, tmp); */
+	/* matrix pow_m = new_matrix(row, row, ZERO); */
+	/* copy(row, row, m, pow_m); */
+	
+	int p;
+	for (p = 0; p < power; p++) {
+		matrix pow_m = product(row, row, tmp, row, row, m);
+		copy(row, row, pow_m, tmp);
+		/*print_matrix(row, row, pow_m);*/
+		free(pow_m);
+		pow_m = NULL;
+	}
+	/*
+	free(pow_m);
+	pow_m = NULL;
+	*/
 	return tmp;
 }

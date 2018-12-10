@@ -71,7 +71,7 @@ int main(void) {
 		matrix res_2 = product(row_1, col_1, a, row_2, col_2, b);
 		printf("result (a x b):\n");
 		print_matrix(row_1, col_2, res_2);
-		
+
 		free(res_2);
 		res_2 = NULL;
 	} else {
@@ -128,6 +128,24 @@ int main(void) {
 		b_sq = NULL;
 		res_5 = NULL;
 	}
+
+	/* test 6: a x b - b x a */
+	matrix axb = product(row_1, col_1, a, row_2, col_2, b);
+	matrix bxa = product(row_2, col_2, b, row_1, col_1, a);
+	matrix _bxa = scalar_product(row_2, col_1, bxa, -1);
+	matrix res_6 = sum(row_1, col_1, axb, _bxa);
+	printf("result (a x b) - (b x a):\n");
+	print_matrix(row_1, col_1, res_6);
+	
+	free(axb);
+	free(bxa);
+	free(_bxa);
+	free(res_6);
+	
+	axb = NULL;
+	bxa = NULL;
+	_bxa = NULL;
+	res_6 = NULL;
 	
 	/* deallocating memory */
 	free(a);
