@@ -3,3 +3,7 @@
 .clang-format
 pset
 matrix
+*.o
+*.win
+*.dev
+*.layout
