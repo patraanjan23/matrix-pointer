@@ -30,6 +30,10 @@ int main(int argc, char const *argv[]) {
   pow_test(r1, c1, a, r2, c2, b);
   misc_test(r1, c1, a, r2, c2, b);
 
+  printf("Press any key to exit\n");
+  getchar();
+  getchar();
+
   free(a);
   free(b);
   return 0;
