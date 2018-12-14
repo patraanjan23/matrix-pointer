@@ -94,7 +94,10 @@ void print_matrix(int row, int col, matrix a) {
  * returns the float value stored in Matrix[i][j]
  */
 float get_element(int i, int j, int col, matrix x) {
-  return *(x + i * col + j);
+  if (x != NULL) {
+    return *(x + i * col + j);
+  }
+  return 0;
 }
 
 /*
@@ -102,7 +105,9 @@ float get_element(int i, int j, int col, matrix x) {
  * j-th col. requires the no of col of the matrix as arg.
  */
 void set_element(int i, int j, int col, matrix x, float value) {
-  *(x + i * col + j) = value;
+  if (x != NULL) {
+    *(x + i * col + j) = value;
+  }
 }
 
 /*
