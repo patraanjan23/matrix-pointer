@@ -1,6 +1,5 @@
 *.exe
 .vscode/
-.clang-format
 pset
 matrix
 *.o
