@@ -71,9 +71,10 @@ matrix new_matrix_file(int *row_str_ptr, int *col_str_ptr, char *file_path) {
  * prints a matrix
  * need no of row, col as argument
  */
-void print_matrix(int row, int col, matrix a) {
+void print_matrix(int row, int col, matrix a, char *name) {
   int i, j;
   if (a != NULL) {
+    printf("matrix %s:\n", name);
     for (i = 0; i < row; i++) {
       for (j = 0; j < col; j++) {
         /* significant digit precision followed */
@@ -83,7 +84,7 @@ void print_matrix(int row, int col, matrix a) {
     }
     printf("\n");
   } else {
-    printf("\n%s\n", "matrix does not exist");
+    printf("\n%s %s\n", name, "matrix does not exist");
   }
 }
 

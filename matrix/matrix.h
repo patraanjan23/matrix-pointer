@@ -10,7 +10,7 @@ typedef float *matrix;
 
 matrix new_matrix(int, int, int);             /* need to be freed */
 matrix new_matrix_file(int *, int *, char *); /* need to be freed */
-void print_matrix(int, int, matrix);
+void print_matrix(int, int, matrix, char *);
 float get_element(int, int, int, matrix);
 void set_element(int, int, int, matrix, float);
 
